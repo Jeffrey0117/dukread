@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' readman:; script-src 'self' readman: 'wasm-unsafe-eval'; style-src 'self' readman: 'unsafe-inline'; img-src 'self' readman: data: blob:; font-src 'self' readman: data: blob:; worker-src 'self' readman: blob:; connect-src 'self' readman:">
+  <title>ReadMan</title>
+  <link rel="stylesheet" href="vendor/pdfjs/web/pdf_viewer.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="bar">
+    <button id="toggle-left" class="tool"></button>
+    <div id="book-title"></div>
+    <div id="page-box">
+      <input id="page-input" type="text" inputmode="numeric" autocomplete="off">
+      <span id="page-total"></span>
+    </div>
+    <div id="zoom-box">
+      <button id="zoom-out" class="tool"></button>
+      <button id="zoom-level" class="tool text"></button>
+      <button id="zoom-in" class="tool"></button>
+    </div>
+    <button id="toggle-right" class="tool"></button>
+  </header>
+  <main id="main">
+    <aside id="left" class="column">
+      <nav class="tabs" id="left-tabs"></nav>
+      <div class="column-body" id="left-body"></div>
+    </aside>
+    <section id="stage">
+      <div id="pages-scroll"><div id="pages" class="pdfViewer"></div></div>
+      <div id="empty"></div>
+    </section>
+    <aside id="right" class="column">
+      <nav class="tabs" id="right-tabs"></nav>
+      <div class="column-body" id="right-body"></div>
+    </aside>
+  </main>
+  <div id="popup" hidden></div>
+  <div id="toast" hidden></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

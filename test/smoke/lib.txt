@@ -1,0 +1,5 @@
+const until = async (check, what, ms = 15000) => { const start = Date.now(); for (;;) { const got = check(); if (got) return got; if (Date.now() - start > ms) throw new Error('timed out waiting for ' + what); await new Promise((r) => setTimeout(r, 100)) } };
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+const scroller = document.getElementById('pages-scroll');
+const press = (target, x, y, type) => target.dispatchEvent(new MouseEvent(type, { bubbles: true, clientX: x, clientY: y, button: 0 }));
+const textNodeWith = (needle) => { const walker = document.createTreeWalker(document.querySelector('.textLayer'), NodeFilter.SHOW_TEXT); while (walker.nextNode()) { const at = walker.currentNode.data.indexOf(needle); if (at >= 0) return { node: walker.currentNode, at } } throw new Error('no text: ' + needle) };
