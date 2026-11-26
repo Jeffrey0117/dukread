@@ -1,7 +1,7 @@
-# ReadMan 第一版
+# DukRead 第一版
 
 2026-11-26。Jeff：「我想做一個 pdf 閱讀器，能做筆記、能查單字、能中英對比……我要做的根本就是歐陸字典 app 的自己版本。」
-他定的：要看原版頁面；讀技術書和英文小說；電腦為主、做成 Electron、平板不管；名字 ReadMan。
+他定的：要看原版頁面；讀技術書和英文小說；電腦為主、做成 Electron、平板不管；名字 DukRead。
 以下標「我的決定」的是 Claude 自己定的。
 
 ## 為什麼
@@ -48,7 +48,7 @@ PDFluv2 已經有查字、中英對照、生詞本，但它把字抽出來重排
 - 開始用不出安裝檔：`start.cmd` 從原始碼跑（跟他平常用 Pipeer 的方式一樣）。
 - 畫面上的字全部在 `src/renderer/text.js`（桌面程式沒有 build，沒用 pagetext-kit，做法照 Pipeer）。
 
-## 資料（都在 `%APPDATA%\ReadMan`）
+## 資料（都在 `%APPDATA%\DukRead`）
 
 - `library.json`：書櫃（代號、檔案位置、書名、頁數、讀到第幾頁、時間）。
 - `notes/<書的代號>.json`：這本書的畫線和筆記（頁、幾個框、原文、筆記）。

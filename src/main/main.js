@@ -18,12 +18,12 @@ const HERE = path.dirname(fileURLToPath(import.meta.url))
 const RENDERER_DIR = path.resolve(HERE, '../renderer')
 const PRELOAD = path.resolve(HERE, '../preload.cjs')
 const DICT_FILE = path.resolve(HERE, '../../assets/dict.json')
-const LAYOUT_ARGUMENT = '--readman-layout='
-const OPEN_CHANNEL = 'readman:open'
-const SMOKE = Boolean(process.env.READMAN_SMOKE_STEPS)
+const LAYOUT_ARGUMENT = '--dukread-layout='
+const OPEN_CHANNEL = 'dukread:open'
+const SMOKE = Boolean(process.env.DUKREAD_SMOKE_STEPS)
 
 // A separate data folder for tests and checks, so they never touch the real shelf.
-if (process.env.READMAN_HOME) app.setPath('userData', path.resolve(process.env.READMAN_HOME))
+if (process.env.DUKREAD_HOME) app.setPath('userData', path.resolve(process.env.DUKREAD_HOME))
 
 // Must happen before the app is ready: gives the page a proper origin of its own.
 protocol.registerSchemesAsPrivileged([{ scheme: APP_SCHEME, privileges: { standard: true, secure: true, supportFetchAPI: true } }])
@@ -49,8 +49,9 @@ function createWindow(prefs, onLeave) {
     minWidth: MIN_SIZE.width,
     minHeight: MIN_SIZE.height,
     autoHideMenuBar: true,
-    title: 'ReadMan',
-    icon: path.resolve(HERE, '../../build/icon.png'),
+    title: 'DukRead',
+    // Run from source, the window would carry Electron's own icon; the installed program has its icon built in.
+    ...(app.isPackaged ? {} : { icon: path.resolve(HERE, '../../build/icon.png') }),
     show: !SMOKE,
     webPreferences: { preload: PRELOAD, contextIsolation: true, nodeIntegration: false, sandbox: true, additionalArguments: [`${LAYOUT_ARGUMENT}${encodeURIComponent(JSON.stringify(prefs.layout))}`] },
   })
@@ -107,10 +108,10 @@ async function start() {
   })
   mainWindow.on('closed', () => { mainWindow = null })
   if (SMOKE) runSmoke(mainWindow, app)
-  if (process.env.READMAN_LIVE === '1') watchLive({ dataDir, app, getWindow: () => mainWindow })
+  if (process.env.DUKREAD_LIVE === '1') watchLive({ dataDir, app, getWindow: () => mainWindow })
 }
 
-// One ReadMan at a time: opening a PDF "with ReadMan" hands it to the window that is already there.
+// One DukRead at a time: opening a PDF "with DukRead" hands it to the window that is already there.
 if (!SMOKE && !app.requestSingleInstanceLock()) {
   app.quit()
 } else {

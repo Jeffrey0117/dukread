@@ -1,6 +1,6 @@
 {
   "repo": 1,
-  "name": "readman",
+  "name": "dukread",
   "what": "在原版頁面上讀英文 PDF 的桌面程式：點一個字就查（離線詞典），選一段就能畫線、寫筆記、翻成中文，整頁的中文在旁邊對照；書留在硬碟原位不上傳，筆記和生詞存在這台電腦。",
   "kind": "app",
   "status": "building",
@@ -15,6 +15,6 @@
     "桌面程式，不對外提供 API，所以 offers 是空的。",
     "詞典 assets/dict.json 是從 pdfluv2 搬來的（那邊的 scripts/build-dict.mjs 產生）；翻譯走 Google 的免費端點，不花錢。",
     "畫面上所有文字集中在 src/renderer/text.js。",
-    "資料在 %APPDATA%\\ReadMan；設 READMAN_HOME 可以換資料夾（測試用）。"
+    "資料在 %APPDATA%\\DukRead；設 DUKREAD_HOME 可以換資料夾（測試用）。"
   ]
 }

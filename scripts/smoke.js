@@ -25,7 +25,7 @@ function run(name, files, args) {
   const list = path.join(OUT, `${name}.json`)
   fs.writeFileSync(list, JSON.stringify(steps))
   const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => key !== 'ELECTRON_RUN_AS_NODE'))
-  const done = spawnSync(ELECTRON, ['.', ...args], { cwd: ROOT, encoding: 'utf8', timeout: 120_000, env: { ...env, READMAN_HOME: path.join(OUT, 'home'), READMAN_SMOKE_STEPS: list } })
+  const done = spawnSync(ELECTRON, ['.', ...args], { cwd: ROOT, encoding: 'utf8', timeout: 120_000, env: { ...env, DUKREAD_HOME: path.join(OUT, 'home'), DUKREAD_SMOKE_STEPS: list } })
   const line = (done.stdout ?? '').split('\n').find((text) => text.startsWith('SMOKE '))
   if (!line) throw new Error(`${name}: the app said nothing.\n${done.stderr ?? ''}`)
   return JSON.parse(line.slice(6))

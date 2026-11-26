@@ -1,4 +1,4 @@
-// Checks the window without a person watching it. READMAN_SMOKE_STEPS=<file> names a JSON list of
+// Checks the window without a person watching it. DUKREAD_SMOKE_STEPS=<file> names a JSON list of
 // { "file": "step.js", "shot": "picture.png" }: each file is the body of an async function run in the
 // page, and "shot" (optional) saves a picture of the window after it. Prints one line and quits.
 import fs from 'node:fs/promises'
@@ -7,7 +7,7 @@ import path from 'node:path'
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export function runSmoke(win, app) {
-  const listFile = process.env.READMAN_SMOKE_STEPS
+  const listFile = process.env.DUKREAD_SMOKE_STEPS
   const problems = []
   // Nobody is looking at this window, and it must behave as if somebody were.
   win.webContents.setBackgroundThrottling(false)

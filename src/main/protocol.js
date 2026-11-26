@@ -1,9 +1,9 @@
-// The window's own files are served as readman://app/… instead of file://, so the page can use
+// The window's own files are served as dukread://app/… instead of file://, so the page can use
 // modules and a worker like any website. Nothing outside the renderer folder can be asked for.
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
-export const APP_SCHEME = 'readman'
+export const APP_SCHEME = 'dukread'
 export const APP_URL = `${APP_SCHEME}://app/index.html`
 
 const TYPES = {

@@ -1,7 +1,7 @@
 // Every word the window shows lives here. Change wording in this file, nowhere else.
 
 export const T = {
-  appName: 'ReadMan',
+  appName: 'DukRead',
 
   bar: {
     toggleLeft: '書櫃與目錄',

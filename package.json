@@ -1,6 +1,6 @@
 {
-  "name": "readman",
-  "productName": "ReadMan",
+  "name": "dukread",
+  "productName": "DukRead",
   "version": "0.1.0",
   "private": true,
   "description": "Read English PDFs on the original pages: click a word to look it up, mark lines, take notes, see the Chinese beside the page.",
@@ -15,14 +15,46 @@
     "smoke": "node scripts/smoke.js",
     "vendor": "node scripts/vendor.js",
     "prestart": "node scripts/vendor.js",
-    "postinstall": "node scripts/vendor.js"
+    "postinstall": "node scripts/vendor.js",
+    "dist": "node scripts/vendor.js && electron-builder --win nsis"
   },
   "license": "UNLICENSED",
   "devDependencies": {
-    "electron": "31.7.7"
+    "electron": "31.7.7",
+    "electron-builder": "25.1.8",
+    "pdfjs-dist": "4.10.38"
   },
   "dependencies": {
-    "opencc-js": "1.4.2",
-    "pdfjs-dist": "4.10.38"
+    "opencc-js": "1.4.2"
+  },
+  "author": "Jeffrey0117",
+  "build": {
+    "appId": "tw.duk.dukread",
+    "productName": "DukRead",
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "artifactName": "DukRead-Setup-${version}.exe"
+    },
+    "fileAssociations": [
+      {
+        "ext": "pdf",
+        "name": "PDF",
+        "role": "Viewer"
+      }
+    ]
   }
 }

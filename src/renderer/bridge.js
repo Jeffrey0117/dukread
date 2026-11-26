@@ -1,6 +1,6 @@
 // The page's side of the bridge to the main process (see preload.cjs). A failed answer becomes an
 // Error that carries its code, so callers can use try / catch and decide by `err.code`.
-const raw = window.readman
+const raw = window.dukread
 
 const ASKS = ['setLayout', 'listBooks', 'addBook', 'pickBooks', 'bookBytes', 'saveProgress', 'removeBook', 'listMarks', 'addMark', 'setNote', 'removeMark', 'listWords', 'addWord', 'removeWord', 'lookup', 'translate', 'translatePage', 'waitingFiles']
 

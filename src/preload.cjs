@@ -2,16 +2,16 @@
 const { contextBridge, ipcRenderer, webUtils } = require('electron')
 
 /** Handlers answer { ok, data } or { ok: false, code }; the page turns a failed answer into an error itself. */
-const call = (name) => (...args) => ipcRenderer.invoke(`readman:${name}`, ...args)
+const call = (name) => (...args) => ipcRenderer.invoke(`dukread:${name}`, ...args)
 
 // How the side columns were left last time, handed over by the main process when it made the window.
-const LAYOUT_ARGUMENT = '--readman-layout='
+const LAYOUT_ARGUMENT = '--dukread-layout='
 const layoutArgument = process.argv.find((arg) => arg.startsWith(LAYOUT_ARGUMENT))
 let layout = null
 try { layout = layoutArgument ? JSON.parse(decodeURIComponent(layoutArgument.slice(LAYOUT_ARGUMENT.length))) : null } catch { layout = null }
 
 // This is everything the page can reach. No require, no files of its own choosing.
-contextBridge.exposeInMainWorld('readman', {
+contextBridge.exposeInMainWorld('dukread', {
   layout,
   setLayout: call('prefs:setLayout'),
 
@@ -40,5 +40,5 @@ contextBridge.exposeInMainWorld('readman', {
   /** PDFs handed to the app before the page was up (the command line, "open with"). Asking also turns on onOpen. */
   waitingFiles: call('launch:waiting'),
   /** PDFs handed to the app later, while it is running. */
-  onOpen: (listener) => { ipcRenderer.on('readman:open', (_event, paths) => listener(paths)) },
+  onOpen: (listener) => { ipcRenderer.on('dukread:open', (_event, paths) => listener(paths)) },
 })

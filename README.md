@@ -1,9 +1,9 @@
-# ReadMan
+# DukRead
 
 在原版頁面上讀英文 PDF：點一個字就查，選一段就能畫線、寫筆記、翻成中文，整頁的中文在旁邊對照。
 歐路詞典那種讀法的自己版本。桌面程式（Windows），書留在硬碟原位，不上傳。
 
-設計：`docs/superpowers/specs/2026-11-26-readman-first-cut-design.md`
+設計：`docs/superpowers/specs/2026-11-26-dukread-first-cut-design.md`
 
 ## 開起來
 
@@ -12,7 +12,7 @@ npm install          （這台機器下載 Electron 要加 NODE_TLS_REJECT_UNAUT
 start.cmd            （背景開；也可以 start.cmd "C:\路徑\書.pdf" 直接開那本）
 ```
 
-資料在 `%APPDATA%\ReadMan`（書櫃、筆記、生詞、翻過的頁）；記錄在同一個資料夾的 `live.log`。
+資料在 `%APPDATA%\DukRead`（書櫃、筆記、生詞、翻過的頁）；記錄在同一個資料夾的 `live.log`。
 
 ## 怎麼用
 

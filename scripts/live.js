@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 每天用的 ReadMan 直接從原始碼跑，改完不用打包。
+// 每天用的 DukRead 直接從原始碼跑，改完不用打包。
 //
 //   npm run live            啟動（背景執行；已經在跑就不重複開）
 //   npm run live:reload     畫面那一半（src/renderer）改了：重新載入頁面
@@ -13,7 +13,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const DATA = process.env.READMAN_HOME ? path.resolve(process.env.READMAN_HOME) : path.join(process.env.APPDATA ?? path.join(os.homedir(), '.config'), 'ReadMan')
+const DATA = process.env.DUKREAD_HOME ? path.resolve(process.env.DUKREAD_HOME) : path.join(process.env.APPDATA ?? path.join(os.homedir(), '.config'), 'DukRead')
 const FLAG = path.join(DATA, 'live.flag')
 const ALIVE = path.join(DATA, 'live.pid')
 const LOG = path.join(DATA, 'live.log')
@@ -51,9 +51,9 @@ function start() {
   const out = fs.openSync(LOG, 'a')
   // Started from inside another tool's session, those marks would make Electron run as plain Node.
   const env = Object.fromEntries(Object.entries(process.env).filter(([name]) => !/^(ELECTRON_RUN_AS_NODE|CLAUDECODE|CLAUDE_CODE_ENTRYPOINT|CLAUDE_CODE_SSE_PORT)$/.test(name)))
-  const child = spawn(electron, ['.', ...process.argv.slice(3)], { cwd: ROOT, detached: true, stdio: ['ignore', out, out], env: { ...env, READMAN_LIVE: '1' } })
+  const child = spawn(electron, ['.', ...process.argv.slice(3)], { cwd: ROOT, detached: true, stdio: ['ignore', out, out], env: { ...env, DUKREAD_LIVE: '1' } })
   child.unref()
-  process.stdout.write(`ReadMan 從原始碼啟動了（PID ${child.pid}）。記錄：${LOG}\n`)
+  process.stdout.write(`DukRead 從原始碼啟動了（PID ${child.pid}）。記錄：${LOG}\n`)
 }
 
 function tell(what) {

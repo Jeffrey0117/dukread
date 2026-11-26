@@ -37,7 +37,7 @@ export function createHandlers({ library, notes, vocab, dict, translator, prefs,
 
 export function registerIpc(ipcMain, handlers, { isOurs, log }) {
   for (const [name, handler] of Object.entries(handlers)) {
-    ipcMain.handle(`readman:${name}`, async (event, ...args) => {
+    ipcMain.handle(`dukread:${name}`, async (event, ...args) => {
       if (!isOurs(event)) return { ok: false, code: 'forbidden' }
       try {
         return { ok: true, data: await handler(...args) }

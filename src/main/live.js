@@ -1,4 +1,4 @@
-// Running from source for everyday use (scripts/live.js, READMAN_LIVE=1). Nothing reloads by itself:
+// Running from source for everyday use (scripts/live.js, DUKREAD_LIVE=1). Nothing reloads by itself:
 // the app takes new code only when told to, through a small file in its data folder — "page" reloads
 // the window, "app" starts the whole program again. It also leaves its process number there, so the
 // script can tell whether it is running.

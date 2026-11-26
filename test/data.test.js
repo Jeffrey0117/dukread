@@ -13,7 +13,7 @@ import { resolveInside } from '../src/main/protocol.js'
 import { createTranslator } from '../src/main/translate.js'
 import { createVocab } from '../src/main/vocab.js'
 
-const tempDir = () => fs.mkdtemp(path.join(os.tmpdir(), 'readman-test-'))
+const tempDir = () => fs.mkdtemp(path.join(os.tmpdir(), 'dukread-test-'))
 const failsWith = (code) => (err) => err instanceof AppError && err.code === code
 const BOOK = 'a'.repeat(16)
 
@@ -195,13 +195,13 @@ test('translate: no network is its own error, and empty text asks nobody', async
 
 test('protocol: only files inside the renderer folder can be asked for', () => {
   const root = path.resolve('src/renderer')
-  assert.equal(resolveInside(root, 'readman://app/index.html'), path.join(root, 'index.html'))
-  assert.equal(resolveInside(root, 'readman://app/lib/marks.js'), path.join(root, 'lib', 'marks.js'))
-  assert.equal(resolveInside(root, 'readman://app/..%2F..%2Fpackage.json'), null)
+  assert.equal(resolveInside(root, 'dukread://app/index.html'), path.join(root, 'index.html'))
+  assert.equal(resolveInside(root, 'dukread://app/lib/marks.js'), path.join(root, 'lib', 'marks.js'))
+  assert.equal(resolveInside(root, 'dukread://app/..%2F..%2Fpackage.json'), null)
   // The address itself folds ".." away before we see it, so this one stays inside the folder.
-  assert.equal(resolveInside(root, 'readman://app/../main/main.js'), path.join(root, 'main', 'main.js'))
-  assert.equal(resolveInside(root, 'readman://app/lib/..%5C..%5C..%5Cpackage.json'), null)
-  assert.equal(resolveInside(root, 'readman://other/index.html'), null)
+  assert.equal(resolveInside(root, 'dukread://app/../main/main.js'), path.join(root, 'main', 'main.js'))
+  assert.equal(resolveInside(root, 'dukread://app/lib/..%5C..%5C..%5Cpackage.json'), null)
+  assert.equal(resolveInside(root, 'dukread://other/index.html'), null)
 })
 
 test('prefs: a saved layout is cleaned, and a window off every screen loses its place', () => {
