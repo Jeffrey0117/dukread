@@ -3,6 +3,8 @@
 在原版頁面上讀英文 PDF：點一個字就查，選一段就能畫線、寫筆記、翻成中文，整頁的中文在旁邊對照。
 歐路詞典那種讀法的自己版本。桌面程式（Windows），書留在硬碟原位，不上傳。
 
+官網與下載：https://jeffrey0117.github.io/dukread/
+
 設計：`docs/superpowers/specs/2026-11-26-dukread-first-cut-design.md`
 
 ## 開起來
@@ -32,6 +34,17 @@ npm run live:restart     改了主程序（src/main、preload.cjs）
 
 有語法錯就不會動正在跑的那一個。
 
+## 出新版
+
+```
+改 package.json 的 version
+NODE_TLS_REJECT_UNAUTHORIZED=0 npm run dist
+gh release create v<版本> dist/DukRead-Setup-<版本>.exe --title v<版本> --notes-file <更新內容.md>
+```
+
+官網（根目錄的 `index.html`）的下載鈕和更新記錄直接讀 GitHub Releases，不用改頁面。
+更新內容用 `### 小標` 加 `- 清單` 寫，官網會照著排。
+
 ## 測試
 
 - `npm test`：規則和資料（不用開視窗）。
@@ -56,4 +69,4 @@ npm run live:restart     改了主程序（src/main、preload.cjs）
 
 ## 還沒做
 
-掃描版的書（沒有文字層）、epub、書內搜尋、背單字、帳號和同步、安裝檔。
+掃描版的書（沒有文字層）、epub、書內搜尋、背單字、帳號和同步、自動更新。

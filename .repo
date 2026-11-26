@@ -8,13 +8,16 @@
     "guide": "README.md",
     "run": "start.cmd（從原始碼背景開；改完 npm run live:reload 或 live:restart）",
     "test": "npm test（另有 npm run smoke：把程式真的開起來走一遍）",
-    "install": "NODE_TLS_REJECT_UNAUTHORIZED=0 npm i（這台機器下載 Electron 需要）"
+    "install": "NODE_TLS_REJECT_UNAUTHORIZED=0 npm i（這台機器下載 Electron 需要）",
+    "build": "NODE_TLS_REJECT_UNAUTHORIZED=0 npm run dist（產出 dist/DukRead-Setup-<版本>.exe，沒簽章）"
   },
   "offers": [],
   "notes": [
     "桌面程式，不對外提供 API，所以 offers 是空的。",
     "詞典 assets/dict.json 是從 pdfluv2 搬來的（那邊的 scripts/build-dict.mjs 產生）；翻譯走 Google 的免費端點，不花錢。",
     "畫面上所有文字集中在 src/renderer/text.js。",
-    "資料在 %APPDATA%\\DukRead；設 DUKREAD_HOME 可以換資料夾（測試用）。"
+    "資料在 %APPDATA%\\DukRead；設 DUKREAD_HOME 可以換資料夾（測試用）。",
+    "官網是 repo 根目錄的 index.html（GitHub Pages，main 分支根目錄），下載鈕和更新記錄直接讀 GitHub Releases：發新版只要建 release 並附上 Setup.exe，官網自己跟上。",
+    "吉祥物原圖 build/logo.png；scripts/make-icon.cjs 把它裁邊置中成 build/icon.png。"
   ]
 }
